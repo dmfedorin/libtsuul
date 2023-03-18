@@ -12,11 +12,11 @@ void stack_push(struct stack *st, void const *item)
 {
 }
 
-void const *stack_peek(struct stack const *st, size_t ind)
+void const *stack_peek(struct stack const *st)
 {
 }
 
-void *stack_pop(struct stack *st, size_t ind)
+void *stack_pop(struct stack *st)
 {
 }
 
