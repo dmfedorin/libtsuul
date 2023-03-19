@@ -22,4 +22,5 @@ void stack_print(struct stack const *st, void (*prt_fn)(void const *));
 #endif
 
 #ifdef __cplusplus
+}
 #endif

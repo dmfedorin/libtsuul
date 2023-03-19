@@ -25,4 +25,5 @@ void string_print(struct string const *s);
 #endif
 
 #ifdef __cplusplus
+}
 #endif

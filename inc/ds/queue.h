@@ -22,4 +22,5 @@ void queue_print(struct queue const *q, void (*prt_fn)(void const *));
 #endif
 
 #ifdef __cplusplus
+}
 #endif

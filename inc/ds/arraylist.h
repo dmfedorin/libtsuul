@@ -24,4 +24,5 @@ void arraylist_print(struct arraylist const *al, void (*prt_fn)(void const *));
 #endif
 
 #ifdef __cplusplus
+}
 #endif
