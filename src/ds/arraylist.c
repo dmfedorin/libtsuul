@@ -10,6 +10,7 @@ struct arraylist arraylist_create(size_t stride)
 	struct arraylist al;
 	
 	init_cont_ctg(&al.data, &al.size, &al.cap, stride);
+	al.stride = stride;
 	return al;
 }
 
@@ -22,7 +23,7 @@ void arraylist_destroy(struct arraylist *al, void (*dstr_fn)(void *))
 void arraylist_push(struct arraylist *al, void const *item)
 {
 	grow_cont_ctg(&al->data, al->size, &al->cap, al->stride);
-	memcpy(arraylist_get_mut(al, al->size), item, al->stride);
+	memcpy((char *)al->data + al->stride * al->size, item, al->stride);
 	++al->size;
 }
 
@@ -36,7 +37,9 @@ void arraylist_insert(struct arraylist *al, void const *item, size_t ind)
 
 void arraylist_remove(struct arraylist *al, size_t ind, void (*rm_fn)(void *))
 {
-	rm_fn(arraylist_get_mut(al, ind));
+	if (rm_fn != NULL)
+		rm_fn(arraylist_get_mut(al, ind));
+	
 	mv_cont_ctg_range(al->data, al->stride, ind + 1, al->size, ind);
 	--al->size;
 	shrink_cont_ctg(&al->data, al->size, &al->cap, al->stride);
