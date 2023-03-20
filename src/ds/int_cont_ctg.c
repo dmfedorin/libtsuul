@@ -49,3 +49,10 @@ void cont_ctg_fn(void *data, size_t stride, size_t size, void (*fn)(void *))
 	for (i = 0; i < size; ++i)
 		fn((char *)data + stride * i);
 }
+
+void mv_cont_ctg_range(void *data, size_t stride, size_t lb, size_t ub,
+                       size_t dst_ind)
+{
+	memmove((char *)data + stride * dst_ind, (char *)data + stride * lb,
+	        stride * (ub - lb));
+}
